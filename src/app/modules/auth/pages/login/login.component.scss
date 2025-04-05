@@ -1,0 +1,32 @@
+.background-image {
+  background: linear-gradient(135deg, rgba(233, 64, 87, 0.8), rgba(255, 142, 29, 0.8)),
+      url('../../../../../assets/images/logo.jpg') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+
+h2 {
+  font-weight: 600;
+}
+
+.m-card {
+  .card-body {
+      padding: 45px 36px;
+  }
+}
+
+
+.m-card {
+  @media (min-width: 768px) {
+      .card {
+          width: 450px;
+      }
+  }
+
+  @media (max-width: 767.98px) {
+      .card {
+          width: 100%;
+      }
+  }
+}

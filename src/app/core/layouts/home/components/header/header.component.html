@@ -1,0 +1,302 @@
+<div class="m-header d-flex align-items-center" #headerWrapper>
+
+  <div class="m-header__container d-flex align-items-center justify-content-between">
+    <div class="m-header__container__left d-flex align-items-center gap-4">
+      <div class="m-header__container__left__logo d-flex">
+        <div class="m-logo__image d-flex align-items-center">
+          <i class="bi bi-list" (click)="toggleHamburger()" *ngIf="!esInterno"></i>
+          <!--
+          <img [src]="logo" alt="Indecopi" class="me-1">
+          -->
+          <div class="vertical-bar"></div>
+          <!--
+          <img [src]="marca" alt="Marca" class="m-logo__image__marca ms-2">
+          -->
+        </div>
+      </div>
+
+      <div class="m-header__container__left__items gap-2" *ngIf="!esInterno" [ngClass]="{
+        'd-block': showMenuMovil
+      }">
+        <!-- Nuestros servicios -->
+        <div class="m-header__container__left__items__option d-flex position-relative p-2" #serviciosTrigger
+          [ngClass]="{'option-open': showMegaMenuServicios}" (click)="toggleMegaMenu('servicios')">
+
+
+          <div class="d-flex justify-content-between w-100">
+            <span class="m-header__container__left__items__option__title me-1">Nuestros servicios</span>
+            <i *ngIf="!showMegaMenuServicios" class="bi bi-chevron-down"></i>
+            <i *ngIf="showMegaMenuServicios" class="bi bi-chevron-up"></i>
+          </div>
+
+          <div class="mega-menu" *ngIf="showMegaMenuServicios" #serviciosMenuContainer>
+            <div class="mega-menu__container d-flex">
+              <div class="mega-menu__left">
+                <ul>
+                  <li *ngFor="let categoria of categoriasServicios"
+                    [class.active]="categoria.nombre === categoriaSeleccionadaServicios"
+                    (click)="seleccionarCategoria('servicios', categoria.nombre, $event)">
+                    {{ categoria.nombre }}
+                    <i class="bi bi-chevron-right"></i>
+                  </li>
+
+                </ul>
+
+                <div class="mesa_partes">
+                  <img src="../../../../assets/icons/icons-special/icon_file_folder.svg" alt="Folder">
+                  <span> Mesa de partes virtual</span>
+
+                </div>
+
+              </div>
+              <div class="mega-menu__right">
+                <div *ngIf="categoriaSeleccionadaServicios">
+                  <label class="mega-menu__right_title d-flex align-items-center gap-2">
+                    <img [src]="getCategoryIcon('servicios', categoriaSeleccionadaServicios)" alt="Icono" width="20"
+                      height="20">
+                    {{ categoriaSeleccionadaServicios }}
+                  </label>
+
+                  <div class="mega-menu__right_margin"></div>
+                  <div class="mega-menu__columns">
+                    <div class="mega-menu__column"
+                      *ngFor="let col of getColumnsCategoria('servicios', categoriaSeleccionadaServicios); let i = index">
+                      <h5>{{ col.title }}</h5>
+
+                      <ng-container *ngIf="col.items && col.items.length > 0; else noItems">
+                        <ul>
+                          <li *ngFor="let item of col.items">
+                            <a [routerLink]="item.route">{{ item.label }}</a>
+                          </li>
+                        </ul>
+                      </ng-container>
+
+                      <ng-template #noItems>
+                        <ng-container *ngIf="col.specialRows && col.specialRows.length > 0; else nothing">
+                          <div class="special-rows">
+                            <div class="special-row" *ngFor="let row of col.specialRows">
+                              <a [routerLink]="row.route" class="d-flex align-items-center justify-content-between">
+                                <div class="d-flex align-items-center gap-2 p-2">
+                                  <div class="special-row-img">
+                                    <img [src]="row.icon" alt="{{row.label}}" width="24" height="24">
+                                  </div>
+                                  <span>{{ row.label }}</span>
+                                  <i class="bi bi-arrow-right"></i>
+                                </div>
+                              </a>
+                            </div>
+                          </div>
+                        </ng-container>
+                        <ng-template #nothing></ng-template>
+                      </ng-template>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Consulta de trámites -->
+        <div class="m-header__container__left__items__option d-flex position-relative  p-2" #gestionTrigger
+          [ngClass]="{'option-open': showMegaMenuGestion}" (click)="toggleMegaMenu('gestion')">
+          <div class="d-flex justify-content-between w-100">
+            <span class="m-header__container__left__items__option__title me-1">Consulta de trámites</span>
+            <i *ngIf="!showMegaMenuGestion" class="bi bi-chevron-down"></i>
+            <i *ngIf="showMegaMenuGestion" class="bi bi-chevron-up"></i>
+          </div>
+          <div class="mega-menu" *ngIf="showMegaMenuGestion" #gestionMenuContainer>
+            <div class="mega-menu__container d-flex">
+              <div class="mega-menu__left">
+                <ul>
+                  <li *ngFor="let categoria of categoriasGestion"
+                    [class.active]="categoria.nombre === categoriaSeleccionadaGestion"
+                    (click)="seleccionarCategoria('gestion', categoria.nombre, $event)">
+                    {{ categoria.nombre }}
+                    <i class="bi bi-chevron-right"></i>
+                  </li>
+                </ul>
+              </div>
+              <div class="mega-menu__right">
+                <div *ngIf="categoriaSeleccionadaGestion">
+                  <label class="mega-menu__right_title d-flex align-items-center gap-2">
+                    <img [src]="getCategoryIcon('gestion', categoriaSeleccionadaGestion)" alt="Icono" width="20"
+                      height="20">
+                    {{ categoriaSeleccionadaGestion }}
+                  </label>
+
+                  <div class="mega-menu__right_margin"></div>
+                  <div class="mega-menu__columns">
+                    <div class="mega-menu__column"
+                      *ngFor="let col of getColumnsCategoria('gestion', categoriaSeleccionadaGestion)">
+                      <h5>{{ col.title }}</h5>
+
+                      <ng-container *ngIf="col.items && col.items.length > 0; else noItemsGestion">
+                        <ul>
+                          <li *ngFor="let item of col.items">
+                            <a [routerLink]="item.route">{{ item.label }}</a>
+                          </li>
+                        </ul>
+                      </ng-container>
+
+                      <ng-template #noItemsGestion>
+                        <ng-container *ngIf="col.specialRows && col.specialRows.length > 0; else nothingGestion">
+                          <div class="special-rows">
+                            <div class="special-row" *ngFor="let row of col.specialRows">
+                              <a [routerLink]="row.route" class="d-flex align-items-center justify-content-between">
+                                <div class="d-flex align-items-center gap-2 p-2">
+                                  <div class="special-row-img">
+                                    <img [src]="row.icon" alt="{{row.label}}" width="24" height="24">
+                                  </div>
+                                  <span>{{ row.label }}</span>
+                                  <i class="bi bi-arrow-right"></i>
+                                </div>
+                              </a>
+                            </div>
+                          </div>
+                        </ng-container>
+                        <ng-template #nothingGestion></ng-template>
+                      </ng-template>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Orientación -->
+        <div class="m-header__container__left__items__option d-flex  p-2">
+          <div class="d-flex justify-content-start w-100">
+            <span>Orientación</span>
+          </div>
+        </div>
+        <!-- Contáctanos -->
+        <div class="m-header__container__left__items__option d-flex  p-2">
+          <div class="d-flex justify-content-start w-100">
+            <span>Contáctanos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="m-header__container__rigth align-items-center gap-3">
+      <div class="m-header__container__rigth__search" *ngIf="!esInterno">
+        <div class="m-input m-input--icon">
+          <input type="text" class="form-control" placeholder="Buscar Servicio">
+          <i class="bi bi-search"></i>
+        </div>
+      </div>
+
+
+      <div class="notification-container" *ngIf="esLogeado">
+        <i class="bi bi-bell-fill"></i>
+        <span class="notification-badge">99</span>
+      </div>
+
+
+
+      <button type="button" class="btn btn-primary" *ngIf="esLogeado">
+        Ver notificaciones
+      </button>
+
+
+      <div class="m-header__container__rigth__country d-flex gap-2 align-items-center">
+        <!--
+        <img src="assets/icons/icon-peru-color.svg">
+        -->
+        <i class="bi bi-caret-down-fill"></i>
+      </div>
+
+      <div class="m-header__container__rigth__buttons d-flex gap-2" *ngIf="!esLogeado">
+        <div class="m-header__container__rigth__buttons d-flex gap-2">
+          <button type="button" class="btn btn-outline-primary">
+            Iniciar Sesión
+          </button>
+
+          <button type="button" class="btn btn-primary">
+            Regístrate
+          </button>
+        </div>
+      </div>
+
+      <div class="m-header__menu d-flex align-items-center justify-content-end" *ngIf="esLogeado">
+
+        <!-- Dropdown trigger -->
+        <div class="m-menu__dropdown d-flex align-items-center justify-content-end dropdown gap-2 pointer"
+          data-bs-toggle="dropdown" aria-expanded="false" #dropdownMenu>
+          <i class="bi bi-building-fill"></i>
+          <div class="d-flex flex-column m-menu__dropdown__perfil">
+            <p>Marco Suarez</p>
+            <span class="m-menu__dropdown__perfil__subtitle">Estudio de Abogados</span>
+          </div>
+
+          <i
+            [ngClass]="dropdownMenu.getAttribute('aria-expanded') === 'true' ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+        </div>
+
+        <!-- Dropdown menu -->
+        <div class="dropdown-menu dropdown-menu-end shadow-sm rounded" data-bs-auto-close="outside" #dropdownContent>
+          <!-- Información de la empresa -->
+          <div class="user-info">
+            <div class="px-3 py-1">
+              <h6 class="mb-1">Empresa ABC S.A.C.</h6>
+            </div>
+            <hr class="dropdown-divider" />
+            <div class="px-3 py-1">
+              <label class="d-flex align-items-center gap-2">
+                <i class="bi bi-pencil"></i>
+                <span>Editar Datos de la Empresa</span>
+              </label>
+            </div>
+          </div>
+
+          <hr class="dropdown-divider" />
+
+          <!-- Administrar Cuentas -->
+          <div class="d-flex align-items-center gap-2 px-3 py-1 pointer" data-bs-toggle="collapse"
+            data-bs-target="#manageAccounts" aria-expanded="false" aria-controls="manageAccounts"
+            (click)="$event.stopPropagation()" #manageAccountsTrigger>
+            <div class="d-flex align-items-center gap-2 w-100">
+              <i class="bi bi-graph-up"></i>
+              <span>Administrar Cuentas</span>
+
+              <i [ngClass]="manageAccountsTrigger.getAttribute('aria-expanded') === 'true' ? 'bi-chevron-up' : 'bi-chevron-down'"
+                class="ms-auto"></i>
+            </div>
+          </div>
+
+          <div class="collapse mt-2 ms-4" id="manageAccounts" #manageAccounts>
+            <label class="d-flex align-items-center gap-2">
+              <i class="bi bi-layers"></i>
+              <span>Administrar Cuentas</span>
+            </label>
+            <label class="d-flex align-items-center gap-2">
+              <i class="bi bi-layers"></i>
+              <span>Asignar Subcuentas</span>
+            </label>
+            <label class="d-flex align-items-center gap-2">
+              <i class="bi bi-layers"></i>
+              <span>Crear Sucursales</span>
+            </label>
+          </div>
+
+          <hr class="dropdown-divider" />
+
+          <!-- Cerrar sesión -->
+          <div class="px-3 py-1">
+            <a href="#" class="text-danger d-flex align-items-center gap-2">
+              <i class="bi bi-box-arrow-right"></i>
+              <span>Cerrar Sesión</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+  </div>

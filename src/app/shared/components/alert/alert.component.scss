@@ -1,0 +1,24 @@
+.m-alert{
+    padding: 20px;
+    &__icon{
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        background-color: var(--tinkuy-success-light);
+        i{
+            font-size: 40px;
+            color: #FFFFFF;
+            line-height: normal;
+        }
+        &.error {
+            background-color: var(--tinkuy-error-primary);
+        }
+    }
+    &__content{
+        margin: 20px 0;
+        P{
+            color: var(--tinkuy-gray-secondary);
+            font-size: 18px;
+        }
+    }
+}

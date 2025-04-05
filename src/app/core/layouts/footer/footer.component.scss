@@ -1,0 +1,108 @@
+.footer {
+    position: relative;
+    overflow-x: hidden;
+    padding: 3rem 2rem 5rem;
+    border-top: 1px solid #EAECF0; 
+    @media (min-width: 1024px) {  
+        padding: 4.5rem 0 5rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    &__logo {
+        position: absolute;
+        width: 180px;
+        right: -28px;
+        top: 20px;
+
+        @media (min-width: 1024px) { 
+            left: 0;
+            width: 180px;
+            top: inherit;
+            bottom: 5.5rem;
+        }
+
+        @media (min-width: 1500px) { 
+            left: 20px;
+            width: 240px;
+        }
+
+        img {
+            width: 100%;
+        }
+    }
+
+    &__information {
+        @media (min-width: 1024px) {   
+            width: calc(100% - 300px);
+            max-width: 1050px;
+        }
+
+        @media (min-width: 1920px) {   
+            width: calc(100% - 300px);
+            max-width: 1175px;
+        }
+
+        &__channels {
+            @media (min-width: 1024px) {   
+                display: flex;
+                justify-content: space-evenly;
+                /*width: calc(100% - 200px);
+                margin-left: 180px;*/
+            }
+
+            &__item {
+                margin-top: 1.5rem;
+                @media (min-width: 1024px) {   
+                    margin-top: 0;
+                }
+
+                &:first-of-type {
+                    margin-top: 0;
+                }
+                &__title {
+                    color: #0A142F;
+                    font-family: var(--font-family-bold);
+                }
+
+                &__info {
+                    line-height: 1.2;
+                    color: #868589;
+                }
+            }
+        }
+
+        &__social {
+            &__image {
+                width: 123px;
+            }
+
+            &__text {
+                color: #0A142F;
+                font-family: var(--font-family-bold);
+            }
+
+            &__media {
+                height: 1rem;
+            }
+        }
+    }
+
+    &__direction {
+        position: absolute;
+        right: 1.5rem;
+        bottom: 2.5rem;
+
+        @media (min-width: 1024px) {   
+            right: 2.5rem;
+            bottom: 5.5rem;
+        }
+
+        button {
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            font-size: 1.5rem;
+        }
+    }
+}

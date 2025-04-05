@@ -1,0 +1,22 @@
+<div class="card-document d-flex" [class.small]="isSmall">
+    <div class="card-document__content text-center">
+        <div class="card-document__content__image d-flex justify-content-center align-items-center">
+            <div class="card-document__content__image__circle rounded-circle opacity-10"></div>
+            <img class="position-absolute" [src]="card?.icon">
+        </div>
+        <span class="card-document__content__text">{{card?.text}}</span>
+        @if (isSmall) {
+            <i class="card-document__content__icon" class="bi bi-info-circle-fill"></i>
+        }
+    </div>
+    @if (!isSmall) {
+    <div class="card-document__action d-flex justify-content-center align-items-center">
+        <span class="card-document__action__text">Ingresar</span>
+        <i class="mt-1 ml-1 bi bi-chevron-right"></i>
+    </div>
+    } @else {
+    <div class="card-document__action-small d-flex justify-content-center align-items-center">
+        <img src="assets/icons/icon-arrow-rigth.svg">
+    </div>
+    }
+</div>

@@ -1,0 +1,44 @@
+.accordion {
+    .accordion-item {
+        border: none;
+        .accordion-header {
+            height: 60px;
+            display: flex;
+
+            button{
+            background: transparent;
+            box-shadow: none;
+            color: #EF9E00;
+            font-size: 22px;
+            padding-inline: 0;
+
+                &::after {
+                    content: "\f282";
+                    font-family: bootstrap-icons !important;
+                    background-image: none;
+                    background-color: rgba(239, 158, 0, 0.1);
+                    width: 42px;
+                    height: 42px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+        }
+
+        .accordion-body {
+            color: #464F60;
+            font-family: var(--font-family-light);
+            font-size: 1rem;
+            padding-top: 0;
+            padding-inline: 0;
+            margin-inline: 0;
+        }
+
+    }
+    .accordion-divider {
+        border-bottom: 1px solid rgba(239, 158, 0, 0.5);
+        margin-inline: 0;
+    }
+}

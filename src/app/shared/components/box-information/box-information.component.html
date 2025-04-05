@@ -1,0 +1,8 @@
+<div class="box-information p-3 d-flex">
+  <i class="box-information__icon bi bi-info-circle-fill"></i>
+  <div class="box-information__content">
+    <span class="box-information__content__title">{{ data?.title }}</span>
+    <p class="box-information__content__text" [innerHTML]="data?.content"></p>
+    <span class="box-information__content__action">{{ data?.actionText }}</span>
+  </div>
+</div>

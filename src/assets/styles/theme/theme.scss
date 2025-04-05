@@ -1,0 +1,44 @@
+@font-face {
+    font-family: "Calibri-Light";
+    src: url("../../fonts/Calibri-Light.ttf");
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: "Calibri-Regular";
+    src: url("../../fonts/Calibri-Regular.ttf");
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: "Calibri-Bold";
+    src: url("../../fonts/Calibri-Bold.ttf");
+    font-weight: 100;
+}
+
+
+:root {
+    --tinkuy-primary-pink: #BB004D;
+    --tinkuy-primary-orange: #EF9E00;
+    --tinkuy-primary-yellow: #FFC400;
+    --tinkuy-primary-white: #FFFFFF;
+
+    --tinkuy-gray-primary: #262626;
+    --tinkuy-gray-secondary: #464F60;
+    --tinkuy-gray-light: #B2B2B2;
+    --tinkuy-gray-ultralight: #F4F5F7;
+
+    --tinkuy-success-primary: #037847;
+    --tinkuy-success-light: #13B469;
+    --tinkuy-error-primary: #DA1414;
+    --tinkuy-error-light: #F48989;
+
+    --tinkuy-complementary-light: #B3B6B3;
+    --tinkuy-complementary-medium: #808080;
+    --tinkuy-complementary-blue: #4891F7;
+
+    // Fonts
+    --font-family-light: "Calibri-Light", sans-serif;
+    --font-family-regular: "Calibri-Regular", sans-serif;
+    --font-family-bold: "Calibri-Bold", sans-serif;
+}

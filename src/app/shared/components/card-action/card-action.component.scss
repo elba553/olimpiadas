@@ -1,0 +1,210 @@
+.card-document {
+    width: 16.875rem;
+    height: 20.525rem;
+    border: 1px solid var(--tinkuy-primary-orange);
+    border-radius: 1rem;
+    gap: 2.5rem;
+    flex-direction: column;
+
+    :hover & {
+        &__content {
+            &__image {
+                &__circle {
+                    background-color: white;
+                    opacity: 1;
+                }
+            }
+
+            &__text {
+                color: white;
+            }
+
+            &__icon {
+                margin-left: -.5rem;
+            }
+        }
+
+        &__action {
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05));
+        }
+    }
+
+    &:hover {
+        box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
+        background-color: var(--tinkuy-primary-orange);
+    }
+
+    &__content {
+        margin-top: 2rem;
+
+        &__image {
+            margin-bottom: 2.5rem;
+
+            &__circle {
+                width: 8.25rem;
+                height: 8.25rem;
+                background-color: var(--tinkuy-primary-pink);
+                opacity: 10%;
+            }
+        }
+
+        &__text {
+            font-size: 20px;
+            font-family: var(--font-family-bold);
+        }
+    }
+
+    &__action {
+        height: 55px;
+        width: 100%;
+        background-color: var(--tinkuy-primary-orange);
+        color: var(--tinkuy-primary-white);
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        cursor: pointer;
+
+        &__text {
+            font-size: 1rem;
+        }
+    }
+
+    &.small {
+        flex-direction: row !important;
+        width: 547px;
+        height: 105px;
+        padding: 1rem 2rem;
+        justify-content: space-between;
+        border: none;
+        box-shadow: 0px 2px 10px 0px #00000026;
+
+        &:hover {
+            background-color: rgba(239, 158, 0, 0.1);
+        }
+
+    }
+
+    &.small:hover & {
+        &__content {
+            &__text {
+                color: #464F60;
+            }
+
+            &__image {
+                &__circle {
+                    background-color: var(--tinkuy-primary-pink) !important;
+                    opacity: 10%;
+                }
+            }
+        }
+    }
+
+    &.small & {
+        &__content {
+            display: flex;
+            margin-top: 0;
+            align-items: center;
+            gap: 1rem;
+
+            &__image {
+                margin-bottom: 0;
+
+                &__circle {
+                    width: 71px;
+                    height: 71px;
+                }
+
+                img {
+                    width: 45px;
+                }
+            }
+
+            &__text {
+                font-size: 22px;
+                color: #464F60;
+            }
+        }
+
+        &__action-small {
+            i {
+                color: #EF9E00;
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .card-document {
+        width: 100%;
+        height: auto;
+
+
+        &__content {
+            margin-top: 1rem;
+
+            &__image {
+                &__circle {
+                    width: 6rem;
+                    height: 6rem;
+                }
+
+                img {
+                    width: 3rem;
+                }
+            }
+
+            &__text {
+                font-size: 18px;
+                text-align: center;
+            }
+        }
+
+        &__action {
+            height: 45px;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &.small {
+            flex-direction: column;
+            width: 100%;
+            height: auto;
+            padding: 1rem;
+            justify-content: center;
+
+            &:hover {
+                background-color: rgba(239, 158, 0, 0.1);
+            }
+
+            &__content {
+                &__image {
+                    &__circle {
+                        width: 50px;
+                        height: 50px;
+                    }
+
+                    img {
+                        width: 35px;
+                    }
+                }
+
+                &__text {
+                    font-size: 18px;
+                    color: #464F60;
+                }
+            }
+
+            &__action-small {
+                img {
+                    width: 20px;
+                }
+            }
+        }
+    }
+
+    .card-document__action {
+        font-size: 14px;
+    }
+}

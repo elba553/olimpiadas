@@ -1,0 +1,199 @@
+<div class="mt-3">
+  <div class="consulta__title">Reporte</div>
+
+  <div class="consulta__body">
+    <div class="consulta__body__content">
+
+      <div class="consulta__body__content__inputs d-flex justify-content-between">
+
+        <div class="consulta__body__content__inputs__items">
+          <div [formGroup]="form" class="row">
+
+            <div class="col-md-4">
+              <div class="m-input">
+                <label>Buscar por Cédula</label>
+                <input type="text" class="form-control" formControlName="filter" placeholder="Cédula" />
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="m-input">
+                <label>Deporte</label>
+                <select class="form-select" formControlName="sport_id">
+                  <option [ngValue]="null">Seleccionar</option>
+                  <option *ngFor="let item of deportes" [value]="item.id">{{ item.name }}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="m-input">
+                <label>Estado</label>
+                <select class="form-select" formControlName="state_id">
+                  <option [ngValue]="null">Seleccionar</option>
+                  <option *ngFor="let item of estados" [value]="item.id">{{ item.name_state }}</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="d-flex gap-1">
+          <div class="d-flex align-items-center pt-3">
+            <button type="button" class="btn btn-primary" (click)="onConsultar()">
+              <i class="bi bi-search"></i>
+              Buscar
+            </button>
+          </div>
+          <div class="d-flex align-items-center pt-3">
+            <button type="button" class="btn btn-outline-primary" (click)="onExportar()">
+              <i class="bi bi-file-earmark-excel"></i>
+              Exportar
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="consulta__body__content__result mt-4">
+
+        <div class="template__component row">
+          <div class="m-table mt-3">
+            <table class="table">
+              <thead>
+                <tr>
+
+                  <th>
+                    Nro
+                  </th>
+
+                  <th>
+                    Foto
+                  </th>
+
+                  <th>
+                    <div class="d-flex gap-1 text-center">
+                      Cédula
+                    </div>
+                  </th>
+
+                  <th>
+                    <div class="d-flex gap-1 text-center">
+                      Nombres
+                    </div>
+                  </th>
+
+                  <th>
+                    <div class="d-flex gap-1 text-center">
+                      Apellidos
+                    </div>
+                  </th>
+
+                  <th>
+                    <div class="d-flex gap-1 text-center">
+                      Estado
+                    </div>
+                  </th>
+
+                  <th>
+                    <div class="d-flex gap-1 text-center">
+                      Teléfono
+                    </div>
+                  </th>
+
+                  <th>
+                    <div class="d-flex gap-1 text-center">
+                      Dirección
+                    </div>
+                  </th>
+
+                  <th>
+                    <div class="d-flex gap-1 text-center">
+                      Correo Electrónico
+                    </div>
+                  </th>
+
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of pageItems; let i = index">
+
+                  <td>Nro.</td>
+                  <td>{{ ((page - 1) * size) + i + 1 }}</td>
+
+                  <td>Foto</td>
+                  <td>
+                    <img class="img-fluid" width="150" src="{{ item.profile_photo }}" alt="">
+                  </td>
+
+                  <td>Cédula</td>
+                  <td>{{ item.people?.cedula }} </td>
+
+                  <td>Nombres</td>
+                  <td>{{ item.people?.first_name }} </td>
+
+                  <td>Apellidos</td>
+                  <td>{{ item.people?.last_name }} </td>
+
+                  <td>Estado</td>
+                  <td>{{ item.states?.name_state }} </td>
+
+                  <td>Teléfono</td>
+                  <td>{{ item.people?.phone_number }} </td>
+
+                  <td>Dirección</td>
+                  <td>{{ item.people?.address }} </td>
+
+                  <td>Correo Electrónico</td>
+                  <td>{{ item.people?.email }} </td>
+
+                  <td data-label="Acciones">
+                    <div class="d-flex justify-content-end">
+                      <div class="dropdown">
+                        <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button"
+                          id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                          Acciones
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          <li><a class="dropdown-item" (click)="onVerDeportes(item)">Ver Deportes</a></li>
+                          <li><a class="dropdown-item" (click)="onVerRelaciones(item)">Ver Parentescos</a></li>
+                        </ul>
+                      </div>
+
+                    </div>
+                  </td>
+                </tr>
+
+                <tr *ngIf="listData.length == 0">
+                  <td colspan="6" class="text-center">No hay resultados</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        @if (listData.length > 0) {
+        <div class="m-pagination mt-2">
+          <div class="d-flex justify-content-between">
+            <div class="d-flex align-items-center gap-2"> Mostrar
+              <select class="form-control" [(ngModel)]="size">
+                <option *ngFor="let item of selectListItems" value="{{item}}">{{item}}</option>
+              </select>
+              registro(s)
+            </div>
+            <ngb-pagination [collectionSize]="totalRecords" [pageSize]="size" [(page)]="page" [boundaryLinks]="true"
+              (pageChange)="onPageChange($event)" [rotate]="true" />
+          </div>
+        </div>
+
+        }
+
+      </div>
+    </div>
+  </div>
+
+</div>

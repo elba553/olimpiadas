@@ -1,0 +1,14 @@
+.pill {
+    padding: 0.25rem 0.75rem;
+    background-color: red;
+    border-radius: 1rem;
+    font-size: 16px;
+    display: inline-block;
+    line-height: 18px;
+    font-family: var(--font-family-bold);
+    
+    &.success {
+        background-color: rgba(19, 180, 105, 0.1);
+        color: var(--tinkuy-success-primary);
+    }
+}

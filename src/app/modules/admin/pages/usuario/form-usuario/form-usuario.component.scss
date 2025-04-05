@@ -1,0 +1,17 @@
+.template {
+  &__header {
+      h2 {
+          margin: 0;
+          color: var(--tinkuy-primary-pink);
+          font-size: 26px;
+          font-family: var(--font-family-bold);
+      }
+  }
+
+  &__component {
+      &__title {
+          font-size: 1.5rem;
+          font-weight: 700;
+      }
+  }
+}

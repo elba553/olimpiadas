@@ -1,0 +1,227 @@
+.consulta {
+  //width: 881px;
+  /*padding: 4rem 0 0 5rem;*/
+
+  &__title {
+    color: var(--tinkuy-primary-pink);
+    font-size: 2rem;
+    font-family: var(--font-family-bold);
+    margin-bottom: 1.5rem;
+  }
+
+  &__options {
+    margin-bottom: 2rem;
+  }
+
+  &__body {
+    &__tabs {
+      margin-bottom: 1.5rem;
+    }
+
+    &__content {
+      &__title {
+        font-size: 1.125rem;
+        font-family: var(--font-family-bold);
+        color: var(--tinkuy-gray-secondary);
+        margin-bottom: 0.5rem;
+      }
+
+      &__inputs {
+        &__items {
+          width: calc(100% - 300px);
+        }
+
+        &__action {
+          margin-bottom: 10px;
+        }
+      }
+
+      &__result {
+
+        h1 {
+          color: var(--tinkuy-primary-pink);
+          font-size: 22px;
+          font-family: var(--font-family-bold);
+        }
+
+        &__info {
+          padding-bottom: 2rem;
+          margin-top: 1rem;
+          border-bottom: 1px solid #eaeaea;
+
+          &:last-of-type {
+            border-bottom: none;
+          }
+
+          &__title {
+            color: var(--tinkuy-gray-primary);
+            font-family: var(--font-family-bold);
+            font-size: 22px;
+            margin-bottom: 1rem;
+          }
+
+          &__group {
+            display: grid;
+            grid-template-columns: 300px 300px;
+            margin-left: 30px;
+
+            &__label {
+              color: #49475a;
+              font-size: 1rem;
+              font-family: var(--font-family-bold);
+            }
+
+            &__value {
+              color: #49475a;
+              font-size: 1rem;
+              font-family: var(--font-family-light);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.template {
+  &__header {
+    h2 {
+      margin: 0;
+      color: var(--tinkuy-primary-pink);
+      font-size: 26px;
+      font-family: var(--font-family-bold);
+    }
+  }
+
+  &__component {
+    &__title {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+  }
+}
+
+.m-table.forzar-modo-movil {
+  .table {
+    display: block;
+    /* Convertir tabla en tarjetas */
+    width: 100%;
+  }
+
+  thead {
+    display: none;
+    /* Ocultar encabezados tradicionales */
+  }
+
+  tbody {
+    display: block;
+    /* Convertir filas en tarjetas */
+    width: 100%;
+
+    tr {
+      position: relative;
+      display: grid;
+      /* Usar grid para estructurar el contenido */
+      grid-template-columns: 1fr 2fr;
+      /* Dos columnas: encabezado y valor */
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 16px;
+      gap: 8px;
+
+      td {
+        display: flex;
+        align-items: center;
+        padding: 0;
+        /* Espaciado interno */
+        border: none;
+
+        &:nth-child(odd) {
+          font-weight: bold;
+          color: #3f3f42f4;
+          /* Color de encabezados */
+          justify-content: flex-start;
+          /* Alinear encabezados a la izquierda */
+        }
+
+        &:nth-child(even) {
+          justify-content: flex-start;
+          /* Alinear contenido a la izquierda */
+        }
+      }
+
+      td[data-label="Acciones"] {
+        grid-column: span 2;
+        /* Acciones ocupan ambas columnas */
+        display: flex;
+        justify-content: flex-end;
+        /* Alinear botones a la derecha */
+      }
+    }
+  }
+
+  .bi-three-dots-vertical {
+    color: #464f60;
+  }
+
+  .hidden-mobile {
+    display: none;
+  }
+
+  .mobile-menu {
+    background: transparent;
+    position: absolute;
+    right: 0;
+  }
+}
+
+.m-table.forzar-modo-movil {
+  .dropdown {
+    position: relative;
+
+    .dropdown-toggle {
+      background: none;
+      border: none;
+      font-size: 24px;
+      padding: 0;
+      margin: 0;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translateY(40px);
+      /* Asegura el desplazamiento correcto */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    .dropdown-item {
+      padding: 8px 16px;
+      font-size: 14px;
+      color: #000;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #f8f9fa;
+      }
+    }
+  }
+}
+
+.m-table.forzar-modo-movil {
+  tbody td:nth-child(odd) {
+    display: none;
+    /* Ocultar encabezados de las filas en pantallas grandes */
+  }
+
+  /* Asegurar que la última columna (acciones) siempre sea visible */
+  tbody td[data-label="Acciones"] {
+    display: table-cell;
+    /* Forzar la visibilidad de la columna de acciones */
+  }
+}

@@ -1,0 +1,24 @@
+<div class="confirm-dialog d-flex justify-content-end">
+  <div role="button" (click)="cancel()">
+    <i class="bi bi-x-circle"></i>
+  </div>
+</div>
+
+<div class="gs-card no-shadow d-flex flex-column align-items-center justify-content-center">
+
+  @if (type == types.INFORMACION) {
+    <i class="bi bi-info-circle-fill"></i>
+  }
+  @else if (type == types.ADVERTENCIA) {
+    <i class="bi bi-exclamation-triangle-fill"></i>
+  }
+  @else if (type == types.ERROR) {
+    <i class="bi bi-exclamation-circle-fill text-danger"></i>
+  }
+  <h3>{{ title }}</h3>
+  <small class="text-center">{{ description }}</small>
+  <div class="gs-card__actions d-flex align-items-center justify-content-center gap-1">
+    <button type="button" class="btn btn-primary" (click)="accept()">{{textOk}}</button>
+    <button type="button" class="btn btn-error" (click)="cancel()">{{textCancel}}</button>
+  </div>
+</div>

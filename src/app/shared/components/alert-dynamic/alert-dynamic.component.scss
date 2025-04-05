@@ -1,0 +1,25 @@
+.m-alert{
+    padding: 20px;
+    &__icon{
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        i{
+            font-size: 40px;
+            color: var(--tinkuy-gray-secondary);
+            line-height: normal;
+        }
+    }
+    &__content{
+        margin: 20px 0;
+        P{
+            color: var(--tinkuy-gray-secondary);
+            font-size: 18px;
+        }
+    }
+    &__actions{
+        .btn{
+            min-width: 100px;
+        }
+    }
+}

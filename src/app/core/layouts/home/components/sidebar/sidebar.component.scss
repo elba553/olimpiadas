@@ -1,0 +1,133 @@
+.m-sidebar {
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--tinkuy-primary-white);
+  box-shadow: 2px 0px 10px 0px #0000000D;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 72px;
+  z-index: 10;
+
+  &.absolute {
+    position: absolute;
+  }
+
+  &.relative {
+    position: relative;
+  }
+
+  &__logo {
+    margin-bottom: 1rem;
+    margin-inline: 1.5rem;
+    border-bottom: 1px solid rgba(187, 0, 77, 0.1);
+    padding-block: 3rem;
+  }
+
+  .m-sidebar__item {
+    padding: 12px 24px 12px 28px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: var(--tinkuy-primary-white);
+    transition: background-color .2s ease;
+    text-decoration: none;
+    color: #464F60;
+
+    &:hover,
+    &.active-link,
+    &.active {
+      background-color: rgba(239, 158, 0, 0.7);
+      color: white;
+
+      .m-icon img {
+        filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(87deg) brightness(1000%) contrast(1000%);
+      }
+
+      .m-icon-items i {
+        color: white;
+      }
+    }
+
+    .m-icon img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .m-icon-items i {
+      color: var(--tinkuy-primary-orange);
+    }
+
+  }
+
+  &__subitems {
+    margin-left: 2.5rem;
+    border-left: 1px solid var(--tinkuy-primary-orange);
+    padding-left: 1rem;
+
+    &__anchor {
+      text-decoration: none;
+      color: var(--tinkuy-gray-secondary);
+      padding: .25rem .75rem;
+      border-radius: 6px;
+      width: 187px;
+
+      &:hover,
+      &.active-link {
+        background-color: rgba(239, 158, 0, 0.2);
+        color: var(--tinkuy-primary-orange);
+
+        .m-icon-subitems {
+          display: block;
+
+          &__image {
+            &__principal {
+              display: none;
+            }
+
+            &__hover {
+              display: block;
+            }
+          }
+        }
+      }
+
+      .m-icon-subitems {
+        display: none;
+
+        &__image {
+          &__principal {
+            display: block;
+          }
+
+          &__hover {
+            display: none;
+          }
+
+          img {
+            width: 17px;
+            height: 17px;
+          }
+
+        }
+      }
+    }
+  }
+
+  .m-text {
+    opacity: 0;
+    visibility: hidden;
+    white-space: nowrap;
+  }
+
+  &.expanded {
+    width: 292px;
+
+    .m-text {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}

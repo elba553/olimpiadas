@@ -1,0 +1,20 @@
+<div class="confirm-dialog d-flex justify-content-end">
+  <div role="button" (click)="close()">
+    <i class="bi bi-x-circle"></i>
+  </div>
+</div>
+
+<div class="gs-card no-shadow d-flex flex-column align-items-center justify-content-center">
+
+  @if (type == types.INFORMACION) {
+    <i class="bi bi-info-circle-fill"></i>
+  }
+  @else if (type == types.ADVERTENCIA) {
+    <i class="bi bi-exclamation-triangle-fill"></i>
+  }
+  @else if (type == types.ERROR) {
+    <i class="bi bi-exclamation-circle-fill text-danger"></i>
+  }
+  <h3>{{ title }}</h3>
+  <small class="text-center">{{ message }}</small>
+</div>

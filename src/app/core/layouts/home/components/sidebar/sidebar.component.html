@@ -1,0 +1,42 @@
+<div class="m-sidebar" [class.absolute]="!showTemplate" [class.relative]="showTemplate" (mouseenter)="toggleExpand()"
+  (mouseleave)="toggleExpand()" [class.expanded]="isExpanded">
+
+  @if(isExpanded && !esInterno) {
+  <div class="m-sidebar__logo d-flex justify-content-center">
+    <img src="assets/icons/icon-busca-tu-marca.svg">
+  </div>
+  }
+  @for (item of MOCK_MENU_ITEMS; track $index) {
+  <a class="m-sidebar__item d-flex justify-content-between" [ngClass]="{'active-link': isActive(item.url)}"
+    [routerLink]="item.url" (click)="selectedMenuOption(item)">
+    <div class="d-flex gap-3">
+      <div class="m-icon">
+        <img [src]="item.icon" alt="Menu">
+      </div>
+      <div class="m-text">
+        {{ item.description }}
+      </div>
+    </div>
+
+    @if(item.items) {
+    <div class="m-icon-items">
+      <i class="bi bi-chevron-down"></i>
+    </div>
+    }
+  </a>
+  @if(item.items && item.expanded && isExpanded) {
+  <div class="m-sidebar__subitems d-flex flex-column gap-1 mt-2 pt-3">
+    @for(subItem of item.items; track $index) {
+    <a class="m-sidebar__subitems__anchor d-flex align-items-center gap-1"
+      [ngClass]="{'active-link': isActive(subItem.url)}" [routerLink]="subItem.url">
+      <div class="m-icon-subitems__image">
+        <img class="m-icon-subitems__image__principal" [src]="subItem.icon" alt="Menu">
+        <img class="m-icon-subitems__image__hover" src="assets/icons/icon-document-yellow.svg" alt="Menu">
+      </div>
+      <span class="lh-1">{{ subItem.description }}</span>
+    </a>
+    }
+  </div>
+  }
+  }
+</div>

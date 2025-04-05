@@ -1,0 +1,27 @@
+.card-buscador {
+    max-width: 100%;
+    border: 1px solid #D9D9D9;
+    border-radius: 1rem;
+    padding-block: 4rem;
+
+    &__content {
+        max-width: 605px;
+        text-align: center;
+
+        &__title {
+            color: var(--tinkuy-primary-pink);
+            font-size: 2rem;
+            font-family: var(--font-family-bold);
+        }
+
+        &__body {
+            font-size: 1rem;
+            color: var(--tinkuy-gray-secondary);
+            font-family: var(--font-family-light);
+        }
+
+        &__input {
+            width: 300px;
+        }
+    }
+}

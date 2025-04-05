@@ -1,0 +1,17 @@
+<app-header></app-header>
+<app-banner-home *ngIf="subjectBanner"></app-banner-home>
+
+<div class="main-container">
+  <div class="main-menu" [class.collapsed]="isCollapsed" *ngIf="showSideBar">
+    <app-sidebar (toggleSidebar)="toggleSidebar($event)"></app-sidebar>
+  </div>
+  <div [ngClass]="{
+    'main-section': !subjectBanner,
+    'w-100': subjectBanner,
+    'collapsed-section': isCollapsed
+  }">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<app-footer></app-footer>

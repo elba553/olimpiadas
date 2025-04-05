@@ -1,0 +1,96 @@
+.box-information {
+    width: 693px;
+    border: 1px solid #D9D9D9;
+    border-radius: 1rem;
+
+    &__icon {
+        color: var(--tinkuy-gray-secondary);
+    }
+
+    &__content {
+        margin-left: .75rem;
+
+        &__title {
+            font-size: 1.125rem;
+            color: var(--tinkuy-gray-secondary);
+            font-family: var(--font-family-bold);
+        }
+
+        &__text {
+            font-size: 1rem;
+            color: var(--tinkuy-gray-secondary);
+
+            ::ng-deep a {
+                color: black;
+            }
+        }
+
+        &__action {
+            font-size: 0.875rem;
+            color: var(--tinkuy-primary-orange);
+            cursor: pointer;
+        }
+    }
+}
+
+.box-information {
+    width: 693px;
+    border: 1px solid #D9D9D9;
+    border-radius: 1rem;
+
+    &__icon {
+        color: var(--tinkuy-gray-secondary);
+    }
+
+    &__content {
+        margin-left: .75rem;
+
+        &__title {
+            font-size: 1.125rem;
+            color: var(--tinkuy-gray-secondary);
+            font-family: var(--font-family-bold);
+        }
+
+        &__text {
+            font-size: 1rem;
+            color: var(--tinkuy-gray-secondary);
+
+            ::ng-deep a {
+                color: black;
+            }
+        }
+
+        &__action {
+            font-size: 0.875rem;
+            color: var(--tinkuy-primary-orange);
+            cursor: pointer;
+        }
+    }
+
+    @media (max-width: 768px) {
+        width: 100%;
+        padding: 1rem;
+
+        &__icon {
+            font-size: 1.5rem;
+        }
+
+        &__content {
+            margin-left: 0.5rem;
+
+            &__title {
+                font-size: 1rem;
+                text-align: left;
+            }
+
+            &__text {
+                font-size: 0.875rem;
+                text-align: justify;
+            }
+
+            &__action {
+                font-size: 0.75rem;
+            }
+        }
+    }
+}

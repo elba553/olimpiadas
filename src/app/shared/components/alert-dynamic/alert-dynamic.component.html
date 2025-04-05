@@ -1,0 +1,12 @@
+<div class="m-alert d-flex flex-column align-items-center justify-content-center">
+  <div class="m-alert__icon d-flex align-items-center justify-content-center">
+    <i [className]="data.icon"></i>
+  </div>
+  <div class="m-alert__content">
+    <p>{{ data.message }}</p>
+  </div>
+  <div class="m-alert__actions d-flex gap-3">
+    <button type="button" class="btn btn-primary" (click)="confirm()">{{ data.titleConfirm }}</button>
+    <button type="button" class="btn btn-outline-primary" (click)="reject()">{{ data.titleReject }}</button>
+  </div>
+</div>
