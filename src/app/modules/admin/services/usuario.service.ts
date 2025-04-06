@@ -17,7 +17,7 @@ export class UsuarioService {
   async login(dato: any): Promise<any | null> {
     const { data, error } = await supabase
       .from('users')
-      .select('username, roles (id, type_rol)')
+      .select('username, roles (id, type_rol), id')
       .eq('username', dato?.username)
       .eq('password', dato?.password);
 

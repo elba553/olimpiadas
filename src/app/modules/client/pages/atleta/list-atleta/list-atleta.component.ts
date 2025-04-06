@@ -1,13 +1,14 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbModal, NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoadingDialogService } from '../../../../../core/dialogs/services/loading-dialog.service';
 import { MessageDialogService } from '../../../../../core/dialogs/services/message-dialog.service';
+import { enumGender } from '../../../../../shared/types/people.enums';
 import { Constants } from '../../../../../utils/constantes';
 import { Utils } from '../../../../../utils/utils';
 import { AtletaService } from '../../../services/atleta.service';
-import { CommonModule } from '@angular/common';
-import { NgbModal, NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { DeportesComponent } from '../components/deportes/deportes.component';
 import { RelacionesComponent } from '../components/relaciones/relaciones.component';
 
@@ -78,7 +79,12 @@ export class ListAtletaComponent implements OnInit{
 
     const filter = this.form.controls['filter'].value;
     const atletas = await this.atletaService.list(filter);
-    this.listData = atletas ?? [];
+    this.listData = atletas?.map((atleta: any) => ({ ...atleta, people: {
+      ...atleta.people,
+      gender: atleta.people.gender === enumGender.MALE ? 'Masculino' : 'Femenino'
+    }})) ?? [];
+
+    // await this.atletaService.updateAllAtletasAvatar();
 
     this.inicializarPaginacion();
 

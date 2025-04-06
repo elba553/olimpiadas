@@ -1,8 +1,8 @@
 import {
-  FormGroup,
-  ValidatorFn,
   AbstractControl,
+  FormGroup,
   ValidationErrors,
+  ValidatorFn,
 } from '@angular/forms';
 
 export class FormValidationUtils {
@@ -243,7 +243,7 @@ export class FormValidationUtils {
 
     if (control.errors['pattern']) {
       errorMessages.push(
-        `El campo ${controlName} no cumple la regla: ${control.errors['pattern'].requiredPattern}`
+        `El campo ${controlName} no cumple la regla: ${controlName === "Teléfono" ? "Solo admite números" :control.errors['pattern'].requiredPattern}`
       );
     }
 

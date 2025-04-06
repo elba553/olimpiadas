@@ -68,6 +68,18 @@
 
                   <th>
                     <div class="d-flex gap-1 text-center">
+                      Género
+                    </div>
+                  </th>
+
+                  <th>
+                    <div class="d-flex gap-1 text-center">
+                      Fecha de Nacimiento
+                    </div>
+                  </th>
+
+                  <th>
+                    <div class="d-flex gap-1 text-center">
                       Estado
                     </div>
                   </th>
@@ -113,6 +125,12 @@
                   <td>Apellidos</td>
                   <td>{{ item.people?.last_name }} </td>
 
+                  <td>Género</td>
+                  <td>{{ item.people?.gender }} </td>
+
+                  <td>Fecha de Nacimiento</td>
+                  <td>{{ item.people?.birthdate }} </td>
+
                   <td>Estado</td>
                   <td>{{ item.states?.name_state }} </td>
 
@@ -132,10 +150,10 @@
                           Acciones
                         </a>
 
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                          <li><a class="dropdown-item" (click)="onEditar(item)">Editar</a></li>
-                          <li><a class="dropdown-item" (click)="onVerDeportes(item)">Ver Deportes</a></li>
-                          <li><a class="dropdown-item" (click)="onVerRelaciones(item)">Ver Parentescos</a></li>
+                        <ul class="dropdown-menu dropdown-button" aria-labelledby="dropdownMenuLink">
+                          <li><a class="dropdown-item dropdown-button" (click)="onEditar(item)">Editar</a></li>
+                          <li><a class="dropdown-item dropdown-button" (click)="onVerDeportes(item)">Ver Deportes</a></li>
+                          <li><a class="dropdown-item dropdown-button" (click)="onVerRelaciones(item)">Ver Parentescos</a></li>
                         </ul>
                       </div>
 

@@ -40,6 +40,32 @@
 
         <div class="col-md-6">
           <div class="m-input">
+            <label>Genero</label>
+            <select class="form-select" formControlName="gender">
+              <option *ngFor="let item of genders" [value]="item">{{ `${item === "MALE" ? 'Masculino' : 'Femenino'}` }}</option>
+            </select>
+            <div *ngIf="formValidator?.hasErrors('gender')" class="text-danger">
+              <div>{{formValidator.getErrorMessages('gender', 'Genero')}}</div>
+            </div>
+          </div>
+        </div>
+
+      
+
+        <div class="col-md-6">
+          <div class="m-input">
+            <label>Fecha de Nacimiento</label>
+            <input class="form-control" type="date" placeholder="Fecha de Nacimiento" formControlName="birthdate" />
+            <div *ngIf="formValidator?.hasErrors('birthdate')" class="text-danger">
+              <div>{{formValidator.getErrorMessages('birthdate', 'Fecha de Nacimiento')}}</div>
+            </div>
+          </div>
+        </div>
+
+        
+
+        <div class="col-md-6">
+          <div class="m-input">
             <label>Estado</label>
             <select class="form-select" formControlName="state_id">
               <option *ngFor="let item of estados" [value]="item.id">{{ item.name_state }}</option>
@@ -53,7 +79,7 @@
         <div class="col-md-6">
           <div class="m-input">
             <label>Teléfono</label>
-            <input class="form-control" type="text" placeholder="Teléfono" formControlName="phone_number" />
+            <input class="form-control input-phone" type="text" placeholder="Teléfono" formControlName="phone_number" />
             <div *ngIf="formValidator?.hasErrors('phone_number')" class="text-danger">
               <div>{{formValidator.getErrorMessages('phone_number', 'Teléfono')}}</div>
             </div>
@@ -83,11 +109,19 @@
         <div class="col-md-6">
           <div class="m-input">
             <label>Cargar Imagen</label>
-            <input type="file" class="form-control" (change)="onFileSelect($event)" />
+            
+            <div class="d-flex">
+              <input type="file" class="form-control" (change)="onFileSelect($event)" />
+            <button type="button" class="btn" (click)="randomProfilePhoto()">
+              <i class="bi bi-dice-6"></i>
+            </button>
+            </div>
 
             <div class="pt-2">
-              <img width="200" *ngIf="!selectedFile && atleta?.profile_photo" [src]="selectedFile? '': atleta?.profile_photo" alt="Imagen del usuario" />
+              <img width="200" *ngIf="selectedFile || atleta?.profile_photo" [src]="selectedFile? selectedFileUrl: atleta?.profile_photo" alt="Imagen del usuario" />
+              
             </div>
+
 
           </div>
         </div>

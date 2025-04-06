@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { supabase } from '../../../core/services/supabase.service';
 import { format } from 'date-fns';
+import { supabase } from '../../../core/services/supabase.service';
 
 @Injectable({
   providedIn: 'root',
@@ -85,6 +85,28 @@ export class AtletaService {
   }
 
   async edit(dato: any): Promise<boolean> {
+
+    const athleta = await this.get(dato.id);
+
+    //changed fields 
+
+    const changedFields = Object.keys(dato).map((key) => {
+      const athletaValue = athleta[key];
+      const newValue = dato[key];
+
+      if(key === 'people') {
+        return null
+      } else if (athletaValue !== newValue && key !== 'id') {
+        return { field: key, oldValue: athletaValue, newValue };
+      }
+
+     
+
+      return null;
+    }).filter(Boolean);
+
+    const currentUser = localStorage.getItem('usuario');
+    
     await this.editPeople(dato.people);
     const { error } = await supabase
       .from('athleta')
@@ -97,6 +119,12 @@ export class AtletaService {
     if (error) {
       throw error;
     }
+
+    await supabase.from('updates_history').insert([{
+      athleta_id: dato?.id,
+      update_by: JSON.parse(currentUser as string)?.id,
+      fields_updated: JSON.stringify(changedFields),
+    }])
 
     return true;
   }
@@ -250,6 +278,8 @@ export class AtletaService {
           last_name: dato?.last_name,
           email: dato?.email,
           address: dato?.address,
+          gender: dato?.gender.toLowerCase(),
+          birthdate: dato?.birthdate,
           phone_number: dato?.phone_number,
           cedula: dato?.cedula,
         },
@@ -264,12 +294,35 @@ export class AtletaService {
   }
 
   async editPeople(dato: any): Promise<any> {
+
+    const currentUser = localStorage.getItem('usuario');
+
+    const oPersona = await this.getPeople(dato?.cedula);
+
+    const changedFields = Object.keys(dato).map((key) => {
+      const peopleValue = oPersona[key];
+      const newValue = dato[key];
+
+      if (key === 'gender') {
+        newValue.toLowerCase();
+      }
+
+      if (peopleValue !== newValue) {
+        return { key, peopleValue, newValue };
+      }
+
+      return null;
+
+    }).filter(Boolean);
+
     const { data, error } = await supabase
       .from('people')
       .update({
         first_name: dato?.first_name,
         last_name: dato?.last_name,
         email: dato?.email,
+        gender: dato?.gender.toLowerCase(),
+        birthdate: dato?.birthdate,
         address: dato?.address,
         phone_number: dato?.phone_number,
         cedula: dato?.cedula,
@@ -280,6 +333,12 @@ export class AtletaService {
     if (error) {
       throw error;
     }
+
+    await supabase.from('updates_history').insert([{
+      people_id: dato?.id,
+      update_by: JSON.parse(currentUser as string)?.id,
+      fields_updated: JSON.stringify(changedFields),
+    }])
 
     return true;
   }
@@ -300,14 +359,55 @@ export class AtletaService {
   }
 
   async updateAllAtletasAvatar() {
+    const atletas = await supabase.from("athleta").select('*, people!inner(*), states!inner(*)');
+
+    if (atletas.error) {
+
+      throw atletas.error;
+    }
+
+    for (const atleta of atletas.data) {
+
+      const gender = atleta.people.gender;
+
+      const image = `https://avatar.iran.liara.run/public/${gender === "male" ? "boy" : "girl"}`;
 
 
-    const atletas = await supabase
+      const downloadedFile = await fetch(image);
 
-  }
+      const file = new File([await downloadedFile.blob()], `avatar_${atleta.id}.png`, {
+        type: 'image/png',
+      });
+
+      atleta.profile_photo = await this.uploadFile(file);
+
+     const { data, error } = await supabase
+        .from('athleta')
+        .update({
+          profile_photo: atleta.profile_photo,
+        })
+        .eq('id', atleta.id)
+        .select();
+
+      if (error) {
+        throw error;
+      }
+    }
+}
 
 
+async obtainRandomProfilePhoto(gender: string) {
 
+  const image = `https://avatar.iran.liara.run/public/${gender.toLocaleLowerCase() === "male" ? "boy" : "girl"}`;
+
+  const downloadedFile = await fetch(image);
+
+  const file = new File([await downloadedFile.blob()], `avatar.png`, {
+    type: 'image/png',
+  });
+
+  return file 
+}
     
 
 
